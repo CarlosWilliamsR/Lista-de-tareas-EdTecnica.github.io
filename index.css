@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-primary: #f4f7fa;
+    --bg-secondary: #ffffff;
+    --text-primary: #1a202c;
+    --text-secondary: #5a667b;
+    --accent: #6d28d9;
+    --accent-hover: #5b21b6;
+    --delete-color: #ef4444;
+    --success-color: #10b981;
+    --border-color: #dbe1ea;
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+    background-color: var(--bg-primary); 
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif; 
+    display: flex; justify-content: center; align-items: center; min-height: 100vh;
+    padding: 20px;
+}
+
+.app-container {
+    width: 100%; max-width: 480px;
+    background: var(--bg-secondary);
+    padding: 2rem; border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    display: flex; flex-direction: column; gap: 1.5rem;
+}
+
+h1 { text-align: center; font-size: 1.8rem; color: var(--text-primary); }
+
+
+.task-form { display: flex; gap: 0.8rem; }
+.form-group { flex-grow: 1; }
+
+.form-group input {
+    width: 100%; padding: 0.8rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 12px; font-size: 1rem;
+    transition: 0.3s;
+}
+.form-group input:focus {
+    outline: none; border-color: var(--accent);
+}
+
+.btn-add {
+    background: var(--accent); color: white;
+    border: none; width: 48px; height: 48px;
+    border-radius: 12px; font-size: 1.2rem;
+    cursor: pointer; opacity: 0.5; pointer-events: none;
+    transition: 0.2s; display: grid; place-items: center;
+}
+.btn-add.active { opacity: 1; pointer-events: all; }
+.btn-add:hover { background: var(--accent-hover); transform: scale(1.05); }
+
+
+.stats-container {
+    display: flex; justify-content: space-between;
+    padding: 0 1rem;
+}
+.stat-item { display: flex; flex-direction: column; align-items: center; }
+.stat-value { font-size: 1.2rem; font-weight: 700; color: var(--accent); }
+.stat-label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+
+
+.filters {
+    display: flex; gap: 0.5rem; justify-content: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+.filter-btn {
+    background: transparent; border: none;
+    padding: 0.5rem 1rem; border-radius: 20px;
+    font-size: 0.9rem; font-weight: 500; color: var(--text-secondary);
+    cursor: pointer; transition: 0.2s;
+}
+.filter-btn:hover { background: var(--border-color); }
+.filter-btn.active {
+    background: var(--accent); color: white;
+}
+
+
+.task-list-container { min-height: 200px; position: relative; }
+#task-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+
+.task-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem; background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px; transition: all 0.3s ease;
+}
+
+
+.task-item.fall {
+    transform: translateX(100px); opacity: 0;
+}
+
+
+.task-item.completed { background: #fafafa; }
+.task-item.completed .task-text {
+    text-decoration: line-through; color: var(--text-secondary);
+}
+
+.task-text { flex-grow: 1; font-size: 1rem; word-break: break-word; }
+
+.btn-check {
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 2px solid var(--border-color); background: transparent;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    color: white; transition: 0.2s;
+}
+.task-item.completed .btn-check {
+    background: var(--success-color); border-color: var(--success-color);
+}
+
+.btn-delete {
+    background: transparent; border: none;
+    color: var(--delete-color); cursor: pointer; font-size: 1.1rem;
+    opacity: 0; transition: 0.2s;
+}
+.task-item:hover .btn-delete { opacity: 1; }
+.btn-delete:hover { transform: scale(1.2); }
+
+
+#empty-state {
+    display: none; 
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 1rem; padding-top: 2rem; color: var(--text-secondary);
+    opacity: 0.6;
+}
+#empty-state i { font-size: 3rem; }
